@@ -52,14 +52,14 @@ public final class TreeSitterQuery {
         ts_query_delete(pointer)
     }
 
-    public func captureName(forId id: UInt32) -> String {
+    func captureName(forId id: UInt32) -> String {
         let lengthPointer = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
         let cString = ts_query_capture_name_for_id(pointer, id, lengthPointer)
         lengthPointer.deallocate()
         return String(cString: cString!)
     }
 
-    public func predicates(forPatternIndex index: UInt32) -> [TreeSitterPredicate] {
+    func predicates(forPatternIndex index: UInt32) -> [TreeSitterPredicate] {
         let lengthPointer = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
         defer {
             lengthPointer.deallocate()
