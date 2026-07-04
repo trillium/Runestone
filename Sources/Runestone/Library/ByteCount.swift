@@ -1,20 +1,20 @@
 import Foundation
 
-struct ByteCount: Hashable {
-    private(set) var value: Int
+public struct ByteCount: Hashable {
+    public private(set) var value: Int
     var utf16Length: Int {
         value / 2
     }
 
-    init(_ value: Int) {
+    public init(_ value: Int) {
         self.value = value
     }
 
-    init(_ value: UInt32) {
+    public init(_ value: UInt32) {
         self.value = Int(value)
     }
 
-    init(utf16Length: Int) {
+    public init(utf16Length: Int) {
         self.value = utf16Length * 2
     }
 }

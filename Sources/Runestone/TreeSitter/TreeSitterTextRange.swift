@@ -1,21 +1,21 @@
 import TreeSitter
 
-final class TreeSitterTextRange {
-    let rawValue: TSRange
-    var startPoint: TreeSitterTextPoint {
+public final class TreeSitterTextRange {
+    public let rawValue: TSRange
+    public var startPoint: TreeSitterTextPoint {
         TreeSitterTextPoint(row: rawValue.start_point.row, column: rawValue.start_point.column)
     }
-    var endPoint: TreeSitterTextPoint {
+    public var endPoint: TreeSitterTextPoint {
         TreeSitterTextPoint(row: rawValue.end_point.row, column: rawValue.end_point.column)
     }
-    var startByte: ByteCount {
+    public var startByte: ByteCount {
         ByteCount(rawValue.start_byte)
     }
-    var endByte: ByteCount {
+    public var endByte: ByteCount {
         ByteCount(rawValue.end_byte)
     }
 
-    init(startPoint: TreeSitterTextPoint, endPoint: TreeSitterTextPoint, startByte: ByteCount, endByte: ByteCount) {
+    public init(startPoint: TreeSitterTextPoint, endPoint: TreeSitterTextPoint, startByte: ByteCount, endByte: ByteCount) {
         self.rawValue = TSRange(
             start_point: startPoint.rawValue,
             end_point: endPoint.rawValue,
@@ -25,7 +25,7 @@ final class TreeSitterTextRange {
 }
 
 extension TreeSitterTextRange: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         "[TreeSitterTextRange startByte=\(startByte) endByte=\(endByte) startPoint=\(startPoint) endPoint=\(endPoint)]"
     }
 }

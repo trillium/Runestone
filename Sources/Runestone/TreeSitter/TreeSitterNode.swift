@@ -1,8 +1,8 @@
 import TreeSitter
 
-final class TreeSitterNode {
-    let rawValue: TSNode
-    var expressionString: String? {
+public final class TreeSitterNode {
+    public let rawValue: TSNode
+    public var expressionString: String? {
         if let str = ts_node_string(rawValue) {
             let result = String(cString: str)
             str.deallocate()
@@ -11,54 +11,54 @@ final class TreeSitterNode {
             return nil
         }
     }
-    var type: String? {
+    public var type: String? {
         if let str = ts_node_type(rawValue) {
             return String(cString: str)
         } else {
             return nil
         }
     }
-    var startByte: ByteCount {
+    public var startByte: ByteCount {
         ByteCount(ts_node_start_byte(rawValue))
     }
-    var endByte: ByteCount {
+    public var endByte: ByteCount {
         ByteCount(ts_node_end_byte(rawValue))
     }
-    var startPoint: TreeSitterTextPoint {
+    public var startPoint: TreeSitterTextPoint {
         TreeSitterTextPoint(ts_node_start_point(rawValue))
     }
-    var endPoint: TreeSitterTextPoint {
+    public var endPoint: TreeSitterTextPoint {
         TreeSitterTextPoint(ts_node_end_point(rawValue))
     }
-    var byteRange: ByteRange {
+    public var byteRange: ByteRange {
         ByteRange(from: startByte, to: endByte)
     }
-    var parent: TreeSitterNode? {
+    public var parent: TreeSitterNode? {
         getRelationship(using: ts_node_parent)
     }
-    var previousSibling: TreeSitterNode? {
+    public var previousSibling: TreeSitterNode? {
         getRelationship(using: ts_node_prev_sibling)
     }
-    var nextSibling: TreeSitterNode? {
+    public var nextSibling: TreeSitterNode? {
         getRelationship(using: ts_node_next_sibling)
     }
-    var textRange: TreeSitterTextRange {
+    public var textRange: TreeSitterTextRange {
         TreeSitterTextRange(startPoint: startPoint, endPoint: endPoint, startByte: startByte, endByte: endByte)
     }
-    var childCount: Int {
+    public var childCount: Int {
         Int(ts_node_child_count(rawValue))
     }
 
-    init(node: TSNode) {
+    public init(node: TSNode) {
         self.rawValue = node
     }
 
-    func descendantForRange(from startPoint: TreeSitterTextPoint, to endPoint: TreeSitterTextPoint) -> TreeSitterNode {
+    public func descendantForRange(from startPoint: TreeSitterTextPoint, to endPoint: TreeSitterTextPoint) -> TreeSitterNode {
         let node = ts_node_descendant_for_point_range(rawValue, startPoint.rawValue, endPoint.rawValue)
         return Self(node: node)
     }
 
-    func child(at index: Int) -> Self? {
+    public func child(at index: Int) -> Self? {
         if index < childCount {
             let node = ts_node_child(rawValue, UInt32(index))
             return Self(node: node)
@@ -80,17 +80,17 @@ private extension TreeSitterNode {
 }
 
 extension TreeSitterNode: Hashable {
-    static func == (lhs: TreeSitterNode, rhs: TreeSitterNode) -> Bool {
+    public static func == (lhs: TreeSitterNode, rhs: TreeSitterNode) -> Bool {
         lhs.rawValue.id == rhs.rawValue.id
     }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue.id)
     }
 }
 
 extension TreeSitterNode: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         "[TreeSitterNode startByte=\(startByte) endByte=\(endByte) startPoint=\(startPoint) endPoint=\(endPoint)]"
     }
 }

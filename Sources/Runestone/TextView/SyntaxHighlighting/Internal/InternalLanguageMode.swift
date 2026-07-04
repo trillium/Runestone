@@ -6,6 +6,7 @@ struct InsertLineBreakIndentStrategy {
 }
 
 protocol InternalLanguageMode: AnyObject {
+    var syntaxTree: TreeSitterTree? { get }
     func parse(_ text: NSString)
     func parse(_ text: NSString, completion: @escaping ((Bool) -> Void))
     func textDidChange(_ change: TextChange) -> LineChangeSet

@@ -1,8 +1,8 @@
 import TreeSitter
 
-final class TreeSitterTree {
-    let pointer: OpaquePointer
-    var rootNode: TreeSitterNode {
+public final class TreeSitterTree {
+    public let pointer: OpaquePointer
+    public var rootNode: TreeSitterNode {
         TreeSitterNode(node: ts_tree_root_node(pointer))
     }
 

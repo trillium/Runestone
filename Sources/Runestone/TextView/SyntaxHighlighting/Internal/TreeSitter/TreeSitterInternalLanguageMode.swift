@@ -7,6 +7,9 @@ protocol TreeSitterLanguageModeDelegate: AnyObject {
 
 final class TreeSitterInternalLanguageMode: InternalLanguageMode {
     weak var delegate: TreeSitterLanguageModeDelegate?
+    var syntaxTree: TreeSitterTree? {
+        rootLanguageLayer.tree
+    }
     var canHighlight: Bool {
         rootLanguageLayer.canHighlight
     }

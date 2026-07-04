@@ -1,6 +1,8 @@
 import Foundation
 
 final class PlainTextInternalLanguageMode: InternalLanguageMode {
+    var syntaxTree: TreeSitterTree? { nil }
+
     func parse(_ text: NSString) {}
 
     func parse(_ text: NSString, completion: @escaping ((Bool) -> Void)) {

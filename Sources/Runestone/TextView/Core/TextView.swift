@@ -779,6 +779,11 @@ open class TextView: UIScrollView {
         textInputView.setLanguageMode(languageMode, completion: completion)
     }
 
+    /// The current tree-sitter syntax tree, if a tree-sitter language mode is active.
+    public var syntaxTree: TreeSitterTree? {
+        textInputView.syntaxTree
+    }
+
     /// Inserts text at the location of the caret or, if no selection or caret is present, at the end of the text.
     /// - Parameter text: A string to insert.
     open func insertText(_ text: String) {

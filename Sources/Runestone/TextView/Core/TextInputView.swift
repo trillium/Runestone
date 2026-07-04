@@ -848,6 +848,10 @@ final class TextInputView: UIView, UITextInput {
         }
     }
 
+    var syntaxTree: TreeSitterTree? {
+        languageMode.syntaxTree
+    }
+
     func syntaxNode(at location: Int) -> SyntaxNode? {
         if let linePosition = lineManager.linePosition(at: location) {
             return languageMode.syntaxNode(at: linePosition)

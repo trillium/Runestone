@@ -1,29 +1,29 @@
 import Foundation
 
-struct ByteRange: Hashable {
-    let location: ByteCount
-    let length: ByteCount
-    var lowerBound: ByteCount {
+public struct ByteRange: Hashable {
+    public let location: ByteCount
+    public let length: ByteCount
+    public var lowerBound: ByteCount {
         location
     }
-    var upperBound: ByteCount {
+    public var upperBound: ByteCount {
         location + length
     }
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         length == 0
     }
 
-    init(location: ByteCount, length: ByteCount) {
+    public init(location: ByteCount, length: ByteCount) {
         self.location = location
         self.length = length
     }
 
-    init(from startByte: ByteCount, to endByte: ByteCount) {
+    public init(from startByte: ByteCount, to endByte: ByteCount) {
         self.location = startByte
         self.length = endByte - startByte
     }
 
-    init(utf16Range: NSRange) {
+    public init(utf16Range: NSRange) {
         self.location = ByteCount(utf16Range.location * 2)
         self.length = ByteCount(utf16Range.length * 2)
     }
