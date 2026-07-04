@@ -20,76 +20,76 @@ public struct ByteCount: Hashable {
 }
 
 extension ByteCount: Comparable {
-    static func < (lhs: ByteCount, rhs: ByteCount) -> Bool {
+    public static func < (lhs: ByteCount, rhs: ByteCount) -> Bool {
         lhs.value < rhs.value
     }
 
-    static func <= (lhs: ByteCount, rhs: ByteCount) -> Bool {
+    public static func <= (lhs: ByteCount, rhs: ByteCount) -> Bool {
         lhs.value <= rhs.value
     }
 
-    static func >= (lhs: ByteCount, rhs: ByteCount) -> Bool {
+    public static func >= (lhs: ByteCount, rhs: ByteCount) -> Bool {
         lhs.value >= rhs.value
     }
 
-    static func > (lhs: ByteCount, rhs: ByteCount) -> Bool {
+    public static func > (lhs: ByteCount, rhs: ByteCount) -> Bool {
         lhs.value > rhs.value
     }
 }
 
 extension ByteCount: Numeric {
-    typealias Magnitude = Int
-    typealias IntegerLiteralType = Int
+    public typealias Magnitude = Int
+    public typealias IntegerLiteralType = Int
 
-    static var zero: ByteCount {
+    public static var zero: ByteCount {
         ByteCount(0)
     }
 
-    var magnitude: Int {
+    public var magnitude: Int {
         value
     }
 
-    init?<T>(exactly source: T) where T: BinaryInteger {
+    public init?<T>(exactly source: T) where T: BinaryInteger {
         self.value = Int(source)
     }
 
-    init(integerLiteral value: Int) {
+    public init(integerLiteral value: Int) {
         self.value = value
     }
 
-    static func - (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
+    public static func - (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
         ByteCount(lhs.value - rhs.value)
     }
 
-    static func -= (lhs: inout ByteCount, rhs: ByteCount) {
+    public static func -= (lhs: inout ByteCount, rhs: ByteCount) {
         lhs.value -= rhs.value
     }
 
-    static func + (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
+    public static func + (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
         ByteCount(lhs.value + rhs.value)
     }
 
-    static func += (lhs: inout ByteCount, rhs: ByteCount) {
+    public static func += (lhs: inout ByteCount, rhs: ByteCount) {
         lhs.value += rhs.value
     }
 
-    static func * (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
+    public static func * (lhs: ByteCount, rhs: ByteCount) -> ByteCount {
         ByteCount(lhs.value * rhs.value)
     }
 
-    static func *= (lhs: inout ByteCount, rhs: ByteCount) {
+    public static func *= (lhs: inout ByteCount, rhs: ByteCount) {
         lhs.value *= rhs.value
     }
 }
 
 extension ByteCount: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         "\(value)"
     }
 }
 
 extension ByteCount: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         "\(value)"
     }
 }

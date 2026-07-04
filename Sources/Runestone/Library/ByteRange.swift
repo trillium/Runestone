@@ -36,13 +36,13 @@ public struct ByteRange: Hashable {
 }
 
 extension ByteRange: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         "{\(location), \(length)}"
     }
 }
 
 extension ByteRange: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         "{\(location), \(length)}"
     }
 }

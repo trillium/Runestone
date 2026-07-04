@@ -34,7 +34,7 @@ public final class TreeSitterTree {
 }
 
 extension TreeSitterTree: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         "[TreeSitterTree rootNode=\(rootNode)]"
     }
 }
