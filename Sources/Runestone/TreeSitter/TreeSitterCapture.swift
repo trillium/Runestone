@@ -6,10 +6,12 @@ public final class TreeSitterCapture {
     public let name: String
     public let byteRange: ByteRange
     public let properties: [String: String]
-    public let textPredicates: [TreeSitterTextPredicate]
+    // textPredicates uses an internal type — accessible within the module only
+    let textPredicates: [TreeSitterTextPredicate]
     public let nameComponentCount: Int
 
-    public convenience init(node: TreeSitterNode, index: UInt32, name: String, predicates: [TreeSitterPredicate]) {
+    // internal init — captures are created by TreeSitterQueryCursor, not by callers
+    convenience init(node: TreeSitterNode, index: UInt32, name: String, predicates: [TreeSitterPredicate]) {
         self.init(node: node, index: index, name: name, byteRange: node.byteRange, predicates: predicates)
     }
 
